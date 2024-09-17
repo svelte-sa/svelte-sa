@@ -1,154 +1,58 @@
 <script lang="ts">
-	import Activity from 'lucide-svelte/icons/activity';
-	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
-	import CreditCard from 'lucide-svelte/icons/credit-card';
-	import DollarSign from 'lucide-svelte/icons/dollar-sign';
-	import Users from 'lucide-svelte/icons/users';
-	import * as Avatar from '$lib/components/ui/avatar';
-	import { Badge } from '$lib/components/ui/badge';
-	import { Button } from '$lib/components/ui/button';
 	import * as Card from '$lib/components/ui/card';
-	import * as Table from '$lib/components/ui/table';
+	import { Button } from '$base/lib/components/ui/button';
+	import * as DropdownMenu from '$base/lib/components/ui/dropdown-menu';
+	import { ChevronDown, Circle, Plus, Star } from 'lucide-svelte';
+	import { Separator } from '$base/lib/components/ui/separator';
 </script>
 
 <div class="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
 	<Card.Root>
-		<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
-			<Card.Title class="text-sm font-medium">Total Revenue</Card.Title>
-			<DollarSign class="h-4 w-4 text-muted-foreground" />
-		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold">$45,231.89</div>
-			<p class="text-xs text-muted-foreground">+20.1% from last month</p>
-		</Card.Content>
-	</Card.Root>
-	<Card.Root>
-		<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
-			<Card.Title class="text-sm font-medium">Subscriptions</Card.Title>
-			<Users class="h-4 w-4 text-muted-foreground" />
-		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold">+2350</div>
-			<p class="text-xs text-muted-foreground">+180.1% from last month</p>
-		</Card.Content>
-	</Card.Root>
-	<Card.Root>
-		<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
-			<Card.Title class="text-sm font-medium">Sales</Card.Title>
-			<CreditCard class="h-4 w-4 text-muted-foreground" />
-		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold">+12,234</div>
-			<p class="text-xs text-muted-foreground">+19% from last month</p>
-		</Card.Content>
-	</Card.Root>
-	<Card.Root>
-		<Card.Header class="flex flex-row items-center justify-between space-y-0 pb-2">
-			<Card.Title class="text-sm font-medium">Active Now</Card.Title>
-			<Activity class="h-4 w-4 text-muted-foreground" />
-		</Card.Header>
-		<Card.Content>
-			<div class="text-2xl font-bold">+573</div>
-			<p class="text-xs text-muted-foreground">+201 since last hour</p>
-		</Card.Content>
-	</Card.Root>
-</div>
-<div class="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-	<Card.Root class="xl:col-span-2">
-		<Card.Header class="flex flex-row items-center">
-			<div class="grid gap-2">
-				<Card.Title>Transactions</Card.Title>
-				<Card.Description>Recent transactions from your store.</Card.Description>
+		<Card.Header class="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">
+			<div class="space-y-1">
+				<Card.Title>shadcn/ui</Card.Title>
+				<Card.Description>
+					Beautifully designed components built with Radix UI and Tailwind CSS.
+				</Card.Description>
 			</div>
-			<Button href="##" size="sm" class="ml-auto gap-1">
-				View All
-				<ArrowUpRight class="h-4 w-4" />
-			</Button>
+			<div class="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground">
+				<Button variant="secondary" class="px-3 shadow-none">
+					<Star class="mr-2 h-4 w-4" />
+					Star
+				</Button>
+				<Separator orientation="vertical" class="h-[20px]" />
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger asChild let:builder>
+						<Button builders={[builder]} variant="secondary" class="px-2 shadow-none">
+							<ChevronDown class="h-4 w-4 text-secondary-foreground" />
+						</Button>
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Content class="w-[200px]" align="end">
+						<DropdownMenu.Label>Suggested Lists</DropdownMenu.Label>
+						<DropdownMenu.Separator />
+						<DropdownMenu.CheckboxItem checked>Future Ideas</DropdownMenu.CheckboxItem>
+						<DropdownMenu.CheckboxItem>My Stack</DropdownMenu.CheckboxItem>
+						<DropdownMenu.CheckboxItem>Inspiration</DropdownMenu.CheckboxItem>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>
+							<Plus class="mr-2 h-4 w-4" /> Create List
+						</DropdownMenu.Item>
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>
+			</div>
 		</Card.Header>
 		<Card.Content>
-			<Table.Root>
-				<Table.Header>
-					<Table.Row>
-						<Table.Head>Customer</Table.Head>
-						<Table.Head class="xl:table.-column hidden">Type</Table.Head>
-						<Table.Head class="xl:table.-column hidden">Status</Table.Head>
-						<Table.Head class="xl:table.-column hidden">Date</Table.Head>
-						<Table.Head class="text-right">Amount</Table.Head>
-					</Table.Row>
-				</Table.Header>
-				<Table.Body>
-					<Table.Row>
-						<Table.Cell>
-							<div class="font-medium">Liam Johnson</div>
-							<div class="hidden text-sm text-muted-foreground md:inline">liam@example.com</div>
-						</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">Sale</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">
-							<Badge class="text-xs" variant="outline">Approved</Badge>
-						</Table.Cell>
-						<Table.Cell class="md:table.-cell xl:table.-column hidden lg:hidden">
-							2023-06-23
-						</Table.Cell>
-						<Table.Cell class="text-right">$250.00</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>
-							<div class="font-medium">Olivia Smith</div>
-							<div class="hidden text-sm text-muted-foreground md:inline">olivia@example.com</div>
-						</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">Refund</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">
-							<Badge class="text-xs" variant="outline">Declined</Badge>
-						</Table.Cell>
-						<Table.Cell class="md:table.-cell xl:table.-column hidden lg:hidden">
-							2023-06-24
-						</Table.Cell>
-						<Table.Cell class="text-right">$150.00</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>
-							<div class="font-medium">Noah Williams</div>
-							<div class="hidden text-sm text-muted-foreground md:inline">noah@example.com</div>
-						</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">Subscription</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">
-							<Badge class="text-xs" variant="outline">Approved</Badge>
-						</Table.Cell>
-						<Table.Cell class="md:table.-cell xl:table.-column hidden lg:hidden">
-							2023-06-25
-						</Table.Cell>
-						<Table.Cell class="text-right">$350.00</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>
-							<div class="font-medium">Emma Brown</div>
-							<div class="hidden text-sm text-muted-foreground md:inline">emma@example.com</div>
-						</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">Sale</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">
-							<Badge class="text-xs" variant="outline">Approved</Badge>
-						</Table.Cell>
-						<Table.Cell class="md:table.-cell xl:table.-column hidden lg:hidden">
-							2023-06-26
-						</Table.Cell>
-						<Table.Cell class="text-right">$450.00</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>
-							<div class="font-medium">Liam Johnson</div>
-							<div class="hidden text-sm text-muted-foreground md:inline">liam@example.com</div>
-						</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">Sale</Table.Cell>
-						<Table.Cell class="xl:table.-column hidden">
-							<Badge class="text-xs" variant="outline">Approved</Badge>
-						</Table.Cell>
-						<Table.Cell class="md:table.-cell xl:table.-column hidden lg:hidden">
-							2023-06-27
-						</Table.Cell>
-						<Table.Cell class="text-right">$550.00</Table.Cell>
-					</Table.Row>
-				</Table.Body>
-			</Table.Root>
+			<div class="flex space-x-4 text-sm text-muted-foreground">
+				<div class="flex items-center">
+					<Circle class="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
+					TypeScript
+				</div>
+				<div class="flex items-center">
+					<Star class="mr-1 h-3 w-3" />
+					20k
+				</div>
+				<div>Updated April 2023</div>
+			</div>
 		</Card.Content>
 	</Card.Root>
 </div>
