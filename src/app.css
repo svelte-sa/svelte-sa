@@ -4,6 +4,15 @@
  
 @layer base {
   :root {
+    --teal-primary: 177 100% 35%;
+    --teal-foreground: 177 100% 35%;
+
+    --fushcia-primary: 344 84% 60%;
+    --fuschia-foreground: 344 84% 60%;
+
+    --orange-primary: 31 100% 50%;
+    --orange-foreground: 31 100% 50%;
+
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
  
@@ -37,6 +46,15 @@
   }
  
   .dark {
+    --teal-primary: 177 100% 35%;
+    --teal-foreground: 177 100% 35%;
+
+    --fushcia-primary: 344 84% 60%;
+    --fuschia-foreground: 344 84% 60%;
+
+    --orange-primary: 31 100% 50%;
+    --orange-foreground: 31 100% 50%;
+
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
  
